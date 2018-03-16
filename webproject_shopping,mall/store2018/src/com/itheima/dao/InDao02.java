@@ -3,6 +3,7 @@ package com.itheima.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.itheima.bean.PageBean;
 import com.itheima.bean.Product;
 
 public interface InDao02 {
@@ -28,4 +29,22 @@ public interface InDao02 {
 	 * @throws SQLException 
 	 */
 	List<Product> findByPid(String pid) throws SQLException;
+	
+	
+	/**
+	 * 统计当前类别下的商品数量
+	 * @param cid
+	 * @return
+	 * @throws SQLException 
+	 */
+	int selectCount(String cid) throws SQLException;
+	/**
+	 * 分类查询当前列标下的商品
+	 * @param a
+	 * @param b
+	 * @param cid
+	 * @return
+	 * @throws SQLException 
+	 */
+	List<Product> selectLimit(int a, int b, String cid) throws SQLException;
 }

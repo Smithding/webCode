@@ -94,7 +94,7 @@
 						<a href="product_info.htm">
 							<img src="${pageContext.request.contextPath}/${p.pimage}" width="130" height="130" style="display: inline-block;">
 						</a>
-						<p><a href="${pageContext.request.contextPath }/productServlet?method=findByPid&pid=1"   style='color:#666'>${fn:substring(p.pname, 0, 13)}</a></p>
+						<p><a href="${pageContext.request.contextPath }/productServlet?method=findByPid&pid=${p.pid}"   style='color:#666'>${fn:substring(p.pname, 0, 13)}</a></p>
 						<p><font color="#E4393C" style="font-size:16px">&yen;${p.shop_price}</font></p>
 					</div>
 					</c:forEach>
@@ -133,7 +133,7 @@
 						<a href="product_info.htm">
 							<img src="${pageContext.request.contextPath}/${e.pimage}" width="130" height="130" style="display: inline-block;">
 						</a>
-						<p><a href="${pageContext.request.contextPath }/productServlet?method=findByPid&pid=12" style='color:#666'>${fn:substring(e.pname, 0, 13)}</a></p>
+						<p><a href="${pageContext.request.contextPath }/productServlet?method=findByPid&pid=${e.pid}" style='color:#666'>${fn:substring(e.pname, 0, 13)}</a></p>
 						<p><font color="#E4393C" style="font-size:16px">&yen;${e.shop_price}</font></p>
 					</div>
 	            </c:forEach>

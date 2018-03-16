@@ -18,4 +18,8 @@ public class Constant {
 	public static final int PRODUCT_MA0 = 0;
 	public static final int PRODUCT_MA1 = 1;
 	
+	/**
+	 * 一页显示的数量
+	 */
+	public static final int PRODUCT_PAGE_SIZE = 12;
 }

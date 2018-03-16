@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn"%>
 <!doctype html>
 <html>
 
@@ -28,183 +30,79 @@
 
 	<body>
 		
-			<!--
-            	时间：2015-12-30
-            	描述：菜单栏
-            -->
-			<div class="container-fluid">
-				<div class="col-md-4">
-					<img src="${pageContext.request.contextPath}/img/logo2.png" />
-				</div>
-				<div class="col-md-5">
-					<img src="${pageContext.request.contextPath}/img/header.png" />
-				</div>
-				<div class="col-md-3" style="padding-top:20px">
-					<ol class="list-inline">
-						<li><a href="login.htm">登录</a></li>
-						<li><a href="register.htm">注册</a></li>
-						<li><a href="cart.htm">购物车</a></li>
-					</ol>
-				</div>
-			</div>
-			<!--
-            	时间：2015-12-30
-            	描述：导航条
-            -->
-			<div class="container-fluid">
-				<nav class="navbar navbar-inverse">
-					<div class="container-fluid">
-						<!-- Brand and toggle get grouped for better mobile display -->
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-							<a class="navbar-brand" href="#">首页</a>
-						</div>
-
-						<!-- Collect the nav links, forms, and other content for toggling -->
-						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-							<ul class="nav navbar-nav">
-								<li class="active"><a href="#">手机数码<span class="sr-only">(current)</span></a></li>
-								<li><a href="#">电脑办公</a></li>
-								<li><a href="#">电脑办公</a></li>
-								<li><a href="#">电脑办公</a></li>
-							</ul>
-							<form class="navbar-form navbar-right" role="search">
-								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Search">
-								</div>
-								<button type="submit" class="btn btn-default">Submit</button>
-							</form>
-
-						</div>
-						<!-- /.navbar-collapse -->
-					</div>
-					<!-- /.container-fluid -->
-				</nav>
-			</div>
+		<%@ include file="/jsp/header.jsp" %>
 
 
 		<div class="row" style="width:1210px;margin:0 auto;">
 			<div class="col-md-12">
 				<ol class="breadcrumb">
-					<li><a href="#">首页</a></li>
+					<li><a href="response.sendRedirect(request.getContextPath()+'/indexServlet?method=index')">首页</a></li>
 				</ol>
 			</div>
-
+         <c:forEach items="${page.list}"  var="p">
 			<div class="col-md-2">
 				<a href="product_info.htm">
-					<img src="${pageContext.request.contextPath}/products/1/cs10001.jpg" width="170" height="170" style="display: inline-block;">
+					<img src="${pageContext.request.contextPath}/${p.pimage}" width="170" height="170" style="display: inline-block;">
 				</a>
-				<p><a href="product_info.html" style='color:green'>冬瓜</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
+				<p><a href="product_info.html" style='color:green'>${fn:substring(p.pname, 0, 12)}</a></p>
+				<p><font color="#FF0000">商城价：&yen;${p.shop_price }</font></p>
 			</div>
-
-			<div class="col-md-2">
-				<a href="product_info.htm">
-					<img src="${pageContext.request.contextPath}/products/1/cs10002.jpg" width="170" height="170" style="display: inline-block;">
-				</a>
-				<p><a href="product_info.html" style='color:green'>圆白菜</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
-			</div>
-
-			<div class="col-md-2">
-				<a href="product_info.htm">
-					<img src="${pageContext.request.contextPath}/products/1/cs10003.jpg" width="170" height="170" style="display: inline-block;">
-				</a>
-				<p><a href="product_info.html" style='color:green'>甜玉米</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
-			</div>
-
-			<div class="col-md-2">
-				<a href="product_info.htm">
-					<img src="${pageContext.request.contextPath}/products/1/cs10004.jpg" width="170" height="170" style="display: inline-block;">
-				</a>
-				<p><a href="product_info.html" style='color:green'>胡萝卜</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
-			</div>
-			<div class="col-md-2">
-				<a href="product_info.htm">
-					<img src="${pageContext.request.contextPath}/products/1/cs10005.jpg" width="170" height="170" style="display: inline-block;">
-				</a>
-				<p><a href="product_info.html" style='color:green'>芹菜</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
-			</div>
-
-			<div class="col-md-2">
-				<a href="product_info.htm">
-					<img src="${pageContext.request.contextPath}/products/1/cs10006.jpg" width="170" height="170" style="display: inline-block;">
-				</a>
-				<p><a href="product_info.html" style='color:green'>韭菜</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
-			</div>
-
-			<div class="col-md-2">
-				<a href="product_info.htm">
-					<img src="${pageContext.request.contextPath}/products/1/cs10007.jpg" width="170" height="170" style="display: inline-block;">
-				</a>
-				<p><a href="product_info.html" style='color:green'>香菜</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
-			</div>
-			<div class="col-md-2">
-				<a href="product_info.htm">
-					<img src="${pageContext.request.contextPath}/products/1/cs10008.jpg" width="170" height="170" style="display: inline-block;">
-				</a>
-				<p><a href="product_info.html" style='color:green'>土豆</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
-			</div>
-			<div class="col-md-2">
-				<a href="product_info.htm">
-					<img src="${pageContext.request.contextPath}/products/1/cs10007.jpg" width="170" height="170" style="display: inline-block;">
-				</a>
-				<p><a href="product_info.html" style='color:green'>香菜</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
-			</div>
-			<div class="col-md-2">
-				<a href="product_info.htm">
-					<img src="${pageContext.request.contextPath}/products/1/cs10008.jpg" width="170" height="170" style="display: inline-block;">
-				</a>
-				<p><a href="product_info.html" style='color:green'>土豆</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
-			</div>
-			<div class="col-md-2">
-				<a href="product_info.htm">
-					<img src="${pageContext.request.contextPath}/products/1/cs10007.jpg" width="170" height="170" style="display: inline-block;">
-				</a>
-				<p><a href="product_info.html" style='color:green'>香菜</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
-			</div>
-			<div class="col-md-2">
-				<a href="product_info.htm">
-					<img src="${pageContext.request.contextPath}/products/1/cs10008.jpg" width="170" height="170" style="display: inline-block;">
-				</a>
-				<p><a href="product_info.html" style='color:green'>土豆</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
-			</div>
+         </c:forEach>
+			
 
 		</div>
 
 		<!--分页 -->
 		<div style="width:380px;margin:0 auto;margin-top:50px;">
 			<ul class="pagination" style="text-align:center; margin-top:10px;">
-				<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-				<li class="active"><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">6</a></li>
-				<li><a href="#">7</a></li>
-				<li><a href="#">8</a></li>
-				<li><a href="#">9</a></li>
-				<li>
-					<a href="#" aria-label="Next">
+			
+			<!-- 上一页 -->
+			<!-- 如果当前页码 == 1，上一页不可以继续点击，超链接失败 -->
+			<c:if test="${page.curPage == 1}">
+				<li class="disabled"><a href="javaScript:void(0)" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+			</c:if>
+			
+		    <!-- 如果当前页码 != 1，上一页可以继续点击，超链接有效 -->
+			<c:if test="${page.curPage != 1}">
+				<li ><a href="${pageContext.request.contextPath}/productServlet?method=findByPage&curPage=${page.curPage-1}&cid=${param.cid}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+			</c:if>
+			
+			
+			<!-- 中间页码 -->
+			<c:forEach begin="1" end="${page.sumPage}" var="n">
+			    <!-- 如果是当前页码，即选中，超链接失效 -->
+			    <c:if test="${page.curPage == n}">
+				<li class="active"><a href="javaScript:void(0)">${n}</a></li>
+				</c:if>
+				
+				<!-- 如果是当前页码，即选中，超链接失效 -->
+			    <c:if test="${page.curPage != n}">
+				<li ><a href="${pageContext.request.contextPath}/productServlet?method=findByPage&curPage=${n}&cid=${param.cid}">${n}</a></li>
+				</c:if>
+				
+			 </c:forEach>
+				
+				
+				<!-- 下一页 -->
+				<!-- 如果当前页码是最后一页，不可以点击，超链接失效 -->
+				<c:if test="${page.curPage == page.sumPage}">
+				<li class="disabled">
+					<a href="javaScript:void(0)" aria-label="Next">
 						<span aria-hidden="true">&raquo;</span>
 					</a>
 				</li>
+				</c:if>
+				
+				<!-- 如果当前页码不是最后一页，可以点击，超链接有效 -->
+				<c:if test="${page.curPage != page.sumPage}">
+				<li >
+					<a href="${pageContext.request.contextPath}/productServlet?method=findByPage&curPage=${page.curPage+1}&cid=${param.cid}" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+				</c:if>
+				
+				
 			</ul>
 		</div>
 		<!-- 分页结束=======================        -->

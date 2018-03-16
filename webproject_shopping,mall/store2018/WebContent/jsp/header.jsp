@@ -91,7 +91,7 @@
 		//alert(data);
 	$(data).each(function(i, obj) {
 
-			$("#classify").append("<li><a href='#'>" + obj.cname + "</a></li>");
+			$("#classify").append("<li><a href='${pageContext.request.contextPath}/productServlet?method=findByPage&curPage=1&cid="+obj.cid+"'>" + obj.cname + "</a></li>");
 		});
 
 	});
