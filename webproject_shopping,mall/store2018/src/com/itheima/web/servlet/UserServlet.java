@@ -35,7 +35,6 @@ public class UserServlet extends BaseServlet {
 			Map<String, String[]> map = request.getParameterMap();
 			User user = new User();
 			BeanUtils.populate(user, map);
-			System.out.println(user.toString());
 			
 			// 2. 手动添加参数
 			user.setUid(UUIDUtils.getId());
@@ -114,7 +113,7 @@ public class UserServlet extends BaseServlet {
 				}
 	
 				request.getSession().setAttribute("user", user);
-				response.sendRedirect(request.getContextPath()+"/jsp/index.jsp");
+				response.sendRedirect(request.getContextPath()+"/index.jsp");
 				return null;
 
 			} else {

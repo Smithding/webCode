@@ -21,7 +21,18 @@ public class Product {
 	private String pdesc; //商品介绍
 	private Integer pflag;	//是否下架    1:下架	0:未下架
 	
-	private Category category; 
+	private Category category;
+	
+	private String cid; // cid分类
+	
+
+	public String getCid() {
+		return cid;
+	}
+
+	public void setCid(String cid) {
+		this.cid = cid;
+	}
 
 	public String getPid() {
 		return pid;
@@ -107,7 +118,7 @@ public class Product {
 	public String toString() {
 		return "Product [pid=" + pid + ", pname=" + pname + ", market_price=" + market_price + ", shop_price="
 				+ shop_price + ", pimage=" + pimage + ", pdate=" + pdate + ", is_hot=" + is_hot + ", pdesc=" + pdesc
-				+ ", pflag=" + pflag + ", category=" + category + "]";
+				+ ", pflag=" + pflag + ", category=" + category + ", cid=" + cid + "]";
 	}
 	
 	

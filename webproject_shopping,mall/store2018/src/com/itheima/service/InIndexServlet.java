@@ -32,7 +32,7 @@ public interface InIndexServlet {
 	 * @return 
 	 * @throws SQLException 
 	 */
-	List<Product> findByPid(String pid) throws SQLException;
+	Product findByPid(String pid) throws SQLException;
 	/**
 	 * 分类商品的分页展示
 	 * @param curPage

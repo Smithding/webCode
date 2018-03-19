@@ -28,13 +28,12 @@ public class ProductServlet extends BaseServlet {
 		try {
 			// 1. 获得请求参数(pid)
 			String pid = request.getParameter("pid");
-			System.out.println(pid);
 			// 2. 调用业务,根据pid获得当前商品的信息(Product)
 			InIndexServlet in = new IndexServletImpl();
-			List<Product> list = in.findByPid(pid);
-			System.out.println(list.toString());
+			Product Product = in.findByPid(pid);
+//			System.out.println(Product.getCategory());
 			// 3. 把Product存到request, 转发 "/jsp/product_info.jsp"
-			request.setAttribute("p", list);
+			request.setAttribute("p", Product);
 			return "/jsp/product_info.jsp";
 			
 		} catch (Exception e) {

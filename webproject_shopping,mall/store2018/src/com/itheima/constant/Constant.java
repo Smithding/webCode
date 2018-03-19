@@ -22,4 +22,12 @@ public class Constant {
 	 * 一页显示的数量
 	 */
 	public static final int PRODUCT_PAGE_SIZE = 12;
+	/**
+	 * 订单状态 0:未付款	1:已付款	2:已发货	3.已完成
+	 */
+	public static final int  NO_PAYMENT= 0;
+	public static final int  YES_PAYMENT= 1;
+	public static final int  YES_DELIVER_CARGO= 2;
+	public static final int  YES_COMPLETE= 3;
+	
 }

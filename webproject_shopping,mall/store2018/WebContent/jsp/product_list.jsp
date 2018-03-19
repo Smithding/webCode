@@ -36,15 +36,15 @@
 		<div class="row" style="width:1210px;margin:0 auto;">
 			<div class="col-md-12">
 				<ol class="breadcrumb">
-					<li><a href="response.sendRedirect(request.getContextPath()+'/indexServlet?method=index')">首页</a></li>
+					<li><a href="${pageContext.request.contextPath}/indexServlet?method=index">首页</a></li>
 				</ol>
 			</div>
          <c:forEach items="${page.list}"  var="p">
 			<div class="col-md-2">
-				<a href="product_info.htm">
+				<a href="${pageContext.request.contextPath }/productServlet?method=findByPid&pid=${p.pid}">
 					<img src="${pageContext.request.contextPath}/${p.pimage}" width="170" height="170" style="display: inline-block;">
 				</a>
-				<p><a href="product_info.html" style='color:green'>${fn:substring(p.pname, 0, 12)}</a></p>
+				<p><a href="${pageContext.request.contextPath }/productServlet?method=findByPid&pid=${p.pid}" style='color:green'>${fn:substring(p.pname, 0, 12)}</a></p>
 				<p><font color="#FF0000">商城价：&yen;${p.shop_price }</font></p>
 			</div>
          </c:forEach>

@@ -3,6 +3,7 @@ package com.itheima.service.impl;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.itheima.bean.Category;
 import com.itheima.bean.PageBean;
 import com.itheima.bean.Product;
 import com.itheima.constant.Constant;
@@ -35,9 +36,12 @@ public class IndexServletImpl implements InIndexServlet {
 	 * 查询单个商品详情
 	 * @throws SQLException 
 	 */
-	public List<Product> findByPid(String pid) throws SQLException {
+	public Product findByPid(String pid) throws SQLException {
 		InDao02 dao = new AountDao02();
-		return  dao.findByPid(pid);
+		Product product = dao.findByPid(pid);
+		Category category = dao.findCategoryByCid(product.getPid());
+		product.setCategory(category);
+		return product;
 	}
 
 	/**

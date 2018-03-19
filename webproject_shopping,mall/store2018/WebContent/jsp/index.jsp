@@ -91,7 +91,7 @@
 			      <!-- 最热商品的循环迭代 -->
 					<c:forEach items="${hotList }" end="8" var="p">
 					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="product_info.htm">
+						<a href="${pageContext.request.contextPath }/productServlet?method=findByPid&pid=${p.pid}">
 							<img src="${pageContext.request.contextPath}/${p.pimage}" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="${pageContext.request.contextPath }/productServlet?method=findByPid&pid=${p.pid}"   style='color:#666'>${fn:substring(p.pname, 0, 13)}</a></p>
@@ -130,7 +130,7 @@
 				<!-- 最新商品的循环迭代 -->
 				<c:forEach items="${newsList}" end="8" var="e">
 					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="product_info.htm">
+						<a href="${pageContext.request.contextPath }/productServlet?method=findByPid&pid=${p.pid}">
 							<img src="${pageContext.request.contextPath}/${e.pimage}" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="${pageContext.request.contextPath }/productServlet?method=findByPid&pid=${e.pid}" style='color:#666'>${fn:substring(e.pname, 0, 13)}</a></p>

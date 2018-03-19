@@ -54,7 +54,7 @@ public class AountDao implements InDao {
 	public List<Category> dao_findAll() throws SQLException {
 		QueryRunner queryRunner = new QueryRunner(C3P0Utils.getDataSource());
 		String sql = "select * from category";
-		List<Category> list = queryRunner.query(sql, new BeanListHandler<Category>(Category.class));
+		List<Category> list = queryRunner.query(sql, new BeanListHandler<>(Category.class));
 		return list;
 	}
 	
@@ -74,7 +74,7 @@ public class AountDao implements InDao {
 		QueryRunner queryRunner = new QueryRunner(C3P0Utils.getDataSource());
 		String sql = "select * from user where username = ? and password=? ";
 		Object[] pame = { username,password };
-		User user = queryRunner.query(sql, new BeanHandler<User>(User.class), pame);
+		User user = queryRunner.query(sql, new BeanHandler<>(User.class), pame);
 		return user;
 		
 	}
@@ -85,7 +85,7 @@ public class AountDao implements InDao {
 	public User daoactivate(String activateid) throws SQLException {
 		QueryRunner queryRunner = new QueryRunner(C3P0Utils.getDataSource());
 		String sql = "select * from user where state = ? and uid = ?  ";
-		User user = queryRunner.query(sql, new BeanHandler<User>(User.class),1,activateid);
+		User user = queryRunner.query(sql, new BeanHandler<>(User.class),1,activateid);
 		return user;
 	}
 

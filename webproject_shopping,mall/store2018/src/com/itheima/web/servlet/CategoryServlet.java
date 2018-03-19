@@ -10,7 +10,7 @@ import com.itheima.service.InService;
 import com.itheima.service.impl.AountService;
 
 /**
- * 分类查询
+ * 商品分类查询
  * Servlet implementation class CategoryServlet
  */
 public class CategoryServlet extends BaseServlet {

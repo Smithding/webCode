@@ -4,18 +4,17 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
-import com.itheima.bean.PageBean;
+import com.itheima.bean.Category;
 import com.itheima.bean.Product;
 import com.itheima.dao.InDao02;
 import com.itheima.utils.C3P0Utils;
-import com.sun.javafx.scene.paint.GradientUtils.Point;
+
 
 public class AountDao02 implements InDao02 {
-
-
 
 	/**
 	 * 最热商品查询
@@ -43,10 +42,10 @@ public class AountDao02 implements InDao02 {
 	 * 查询单个商品详情
 	 * @throws SQLException 
 	 */
-	public List<Product> findByPid(String pid) throws SQLException {
+	public Product findByPid(String pid) throws SQLException {
 		QueryRunner queryRunner = new QueryRunner(C3P0Utils.getDataSource());
 		String sql = "select * from product where pid = ?";
-		List<Product> query = queryRunner.query(sql, new BeanListHandler<Product>(Product.class),pid);
+		Product query = queryRunner.query(sql, new BeanHandler<Product>(Product.class),pid);
 		return query;
 	}
 
@@ -70,6 +69,16 @@ public class AountDao02 implements InDao02 {
 		String sql ="select * from product where cid = ? limit ? ,?";
 		List<Product> query = queryRunner.query(sql, new BeanListHandler<Product>(Product.class),cid,a,b);
 		return query;
+	}
+
+	/**
+	 * 根据pid查询商品所在分类
+	 * @throws SQLException 
+	 */
+	public Category findCategoryByCid(String pid) throws SQLException {
+		QueryRunner queryRunner = new QueryRunner(C3P0Utils.getDataSource());
+		String sql = "SELECT * FROM category WHERE cid = (SELECT cid FROM product WHERE pid = ?)";
+		return queryRunner.query(sql, new BeanHandler<Category>(Category.class),pid);
 	}
 
 	
