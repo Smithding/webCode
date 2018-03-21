@@ -82,9 +82,9 @@
 
 			<div>
 				<hr/>
-				<form class="form-horizontal" action="${pageContext.request.contextPath }/orderServlet" method="post" style="margin-top:5px;margin-left:150px;">
-					 <input type="hidden" name="method" value="pay"/>
-					 <input type="hidden" name="oid" value="${order.oid }"/>
+				<form  id="orderForm" class="form-horizontal" action="${pageContext.request.contextPath  }/orderServlet" method="post" style="margin-top:5px;margin-left:150px;">
+					<input type="hidden" name="method" value="pay"/>
+					<input type="hidden" name="oid" value="${order.oid }"/>
 					<div class="form-group">
 						<label for="username" class="col-sm-1 control-label">地址</label>
 						<div class="col-sm-5">
@@ -137,6 +137,7 @@
 					<p style="text-align:right;margin-right:100px;">
 						<a href="javascript:document.getElementById('orderForm').submit();">
 							<img src="${pageContext.request.contextPath}/images/finalbutton.gif" width="204" height="51" border="0" />
+							<input  type="submit" />
 						</a>
 					</p>
 			

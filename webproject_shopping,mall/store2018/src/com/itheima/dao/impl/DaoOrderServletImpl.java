@@ -132,6 +132,20 @@ public  class DaoOrderServletImpl implements InDaoOrderServletImpl {
 		return order;
 	}
 
+	/**
+	 * 第三方支付功能
+	 * @throws SQLException 
+	 */
+	@Override
+	public void dao_updateOrder(Order order) throws SQLException {
+		QueryRunner queryRunner = new QueryRunner(C3P0Utils.getDataSource());
+		String sql = "update orders set  ordertime = ?, state = ?, address = ?,name = ?,telephone = ? where oid = ?";
+		Object[] params = {order.getOrdertime(), order.getState(), order.getAddress(),order.getName(),
+				order.getTelephone(),order.getOid()};
+		queryRunner.update(sql,params);
+		
+	}
+
 	  
 
 }

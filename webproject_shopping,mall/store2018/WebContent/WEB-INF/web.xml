@@ -84,4 +84,13 @@
     <servlet-name>OrderServlet</servlet-name>
     <url-pattern>/orderServlet</url-pattern>
   </servlet-mapping>
+  <filter>
+    <display-name>CartFilter</display-name>
+    <filter-name>CartFilter</filter-name>
+    <filter-class>com.itheima.web.filter.CartFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CartFilter</filter-name>
+    <url-pattern>/jsp/cart.jsp</url-pattern>
+  </filter-mapping>
 </web-app>

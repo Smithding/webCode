@@ -26,6 +26,15 @@ public interface InfindByPage {
 	 */
 	Order findByOId(String oid) throws Exception;
 
+	/**
+	 * 第三方支付功能
+	 * @param order
+	 * @throws SQLException 
+	 */
+	void updateOrder(Order order) throws SQLException;
+
+
+
 
 	
 }

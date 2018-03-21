@@ -27,7 +27,7 @@
 					<ol class="list-inline">
 						<li><a href="${pageContext.request.contextPath}/jsp/login.jsp">登录</a></li>
 						<li><a href="${pageContext.request.contextPath}/jsp/register.jsp">注册</a></li>
-						<li><a href="#">购物车</a></li>
+						<li><a href="${pageContext.request.contextPath}/jsp/cart.jsp">购物车</a></li>
 					</ol>
 					</c:if>
 				</div>

@@ -51,6 +51,14 @@ public interface InDaoOrderServletImpl {
 	 */
 	Order dao_findByOId(String oid)throws Exception;
 
+	/**
+	 * 第三方支付功能
+	 * @param order
+	 * @return
+	 * @throws SQLException 
+	 */
+	void dao_updateOrder(Order order) throws SQLException;
+
 
    
 }

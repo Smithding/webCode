@@ -67,6 +67,19 @@ public class ServiceFindByPageImpl implements InfindByPage {
 		return dao.dao_findByOId(oid);
 	}
 
+	/**
+	 * 第三方支付功能
+	 * @return 
+	 * @return 
+	 * @throws SQLException 
+	 */
+	@Override
+	public void updateOrder(Order order) throws SQLException {
+		InDaoOrderServletImpl dao = new DaoOrderServletImpl();
+		dao.dao_updateOrder(order);
+		
+	}
+
 	
 
 }
