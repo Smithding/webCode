@@ -27,7 +27,7 @@
 					<ol class="list-inline">
 						<li><a href="${pageContext.request.contextPath}/jsp/login.jsp">登录</a></li>
 						<li><a href="${pageContext.request.contextPath}/jsp/register.jsp">注册</a></li>
-						<li><a href="cart.htm">购物车</a></li>
+						<li><a href="#">购物车</a></li>
 					</ol>
 					</c:if>
 				</div>
@@ -36,7 +36,8 @@
 				<c:if test="${not empty user}">
 						<ol class="list-inline">
 							<li>尊敬的${user.username }先生</li>
-							<li><a href="register.htm">购物车</a></li>
+							<li><a href="${pageContext.request.contextPath}/jsp/cart.jsp">购物车</a></li>
+							<li><a href="${pageContext.request.contextPath }/orderServlet?method=findByPage&curPage=1">我的订单</a></li>
 							<li><a href="${pageContext.request.contextPath}/demo?method=logout">注销</a></li>
 						</ol>
 					</c:if>

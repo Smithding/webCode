@@ -37,6 +37,7 @@
 
 				<div style="margin:0 auto;margin-top:10px;width:950px;">
 					<strong>订单详情</strong>
+					
 					<table class="table table-bordered">
 						<tbody>
 							<tr class="warning">
@@ -81,27 +82,29 @@
 
 			<div>
 				<hr/>
-				<form class="form-horizontal" style="margin-top:5px;margin-left:150px;">
+				<form class="form-horizontal" action="${pageContext.request.contextPath }/orderServlet" method="post" style="margin-top:5px;margin-left:150px;">
+					 <input type="hidden" name="method" value="pay"/>
+					 <input type="hidden" name="oid" value="${order.oid }"/>
 					<div class="form-group">
 						<label for="username" class="col-sm-1 control-label">地址</label>
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="username" placeholder="请输入收货地址">
+							<input type="text" name="address" class="form-control" id="username" placeholder="请输入收货地址">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputPassword3" class="col-sm-1 control-label">收货人</label>
 						<div class="col-sm-5">
-							<input type="password" class="form-control" id="inputPassword3" placeholder="请输收货人">
+							<input type="text" name="name" class="form-control" id="inputPassword3" placeholder="请输收货人">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="confirmpwd" class="col-sm-1 control-label">电话</label>
 						<div class="col-sm-5">
-							<input type="password" class="form-control" id="confirmpwd" placeholder="请输入联系方式">
+							<input type="text" name="telephone" class="form-control" id="confirmpwd" placeholder="请输入联系方式">
 						</div>
 					</div>
-				</form>
-
+			
+             
 				<hr/>
 
 				<div style="margin-top:5px;margin-left:150px;">
@@ -128,7 +131,7 @@
 						<img src="${pageContext.request.contextPath}/bank_img/guangda.bmp" align="middle" />&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="radio" name="pd_FrpId" value="CMBCHINA-NET-B2C" />招商银行
 						<img src="${pageContext.request.contextPath}/bank_img/cmb.bmp" align="middle" />
-
+                   
 					</p>
 					<hr/>
 					<p style="text-align:right;margin-right:100px;">
@@ -136,9 +139,10 @@
 							<img src="${pageContext.request.contextPath}/images/finalbutton.gif" width="204" height="51" border="0" />
 						</a>
 					</p>
+			
 					<hr/>
-
 				</div>
+				 </form>
 			</div>
 
 		</div>

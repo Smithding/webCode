@@ -29,5 +29,9 @@ public class Constant {
 	public static final int  YES_PAYMENT= 1;
 	public static final int  YES_DELIVER_CARGO= 2;
 	public static final int  YES_COMPLETE= 3;
+	/**
+	 * 订单分页，一页显示的数量
+	 */
+	public static final int ORDER_PAGE_SIZE = 2;
 	
 }
