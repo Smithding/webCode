@@ -54,6 +54,25 @@ public interface InDao {
 	 */
 	void Iodao(User user) throws Exception;
 	
+	/**
+	 * 展示全部商品
+	 * @return
+	 * @throws Exception
+	 */
+	List<Product> hotList() throws Exception;
+	/**
+	 * 后台-添加商品分类
+	 * @param cname
+	 * @param id
+	 * @throws SQLException 
+	 */
+	void dao_addUI(String cname, String id) throws SQLException;
+	/**
+	 * 后台-删除商品分类
+	 * @param cid
+	 * @throws SQLException
+	 */
+	void dao_deleteaddUI(String cid)throws SQLException;
 
 	
 	

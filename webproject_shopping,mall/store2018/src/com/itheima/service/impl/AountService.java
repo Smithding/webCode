@@ -92,7 +92,7 @@ public class AountService implements InService {
 	//把数据保存到redis中
 	private void saveToRedis(Jedis jedis, String data) {
 		if ( jedis != null ) {
-			jedis.set(Constant.STORE_CATOGRY_KEY, data);
+			jedis.set(Constant.STORE_CATOGRY_KEY01, data);
 		}
 		
 	}
@@ -100,16 +100,14 @@ public class AountService implements InService {
 	//Redis数据
 	private String getFromRedis(Jedis jedis) {
 		if( jedis != null ) {
-			return jedis.get(Constant.STORE_CATOGRY_KEY);
+			return jedis.get(Constant.STORE_CATOGRY_KEY01);
 		}
 		return null;
 	}
 
 	//mysql数据
 	private String getFromMySql() throws SQLException {
-		InDao dao = new AountDao();
-		List<Category> list = dao.dao_findAll();
-		String list2json = JsonUtil.list2json(list);
+		String list2json = JsonUtil.list2json(new AdminCategoryImpl().findAll());
 		return list2json;
 	}
 

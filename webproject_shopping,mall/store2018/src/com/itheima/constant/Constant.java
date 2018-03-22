@@ -10,7 +10,8 @@ public class Constant {
 	/**
 	 * redis 优化常量
 	 */
-	public static final String STORE_CATOGRY_KEY = "store_catogry_key";
+	public static final String STORE_CATOGRY_KEY01 = "store_catogry_key01";
+	public static final String STORE_CATOGRY_KEY02 = "store_catogry_key02";
 	
 	/**
 	 * Product 商品状态常量

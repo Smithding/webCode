@@ -55,11 +55,11 @@
 											onmouseout="this.style.backgroundColor = '#F5FAFE';">
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="18%">
-												
+												${c.cid}
 											</td>
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">
-												
+												${c.cname}
 											</td>
 											<td align="center" style="HEIGHT: 22px">
 												<a href="${ pageContext.request.contextPath }/adminCategory">
@@ -68,7 +68,7 @@
 											</td>
 									
 											<td align="center" style="HEIGHT: 22px">
-												<a href="${ pageContext.request.contextPath }/adminCategory">
+												<a href="${ pageContext.request.contextPath }/adminCategoryServlet?method=deleteaddUI&cid=${c.cid}">
 													<img src="${pageContext.request.contextPath}/images/i_del.gif" width="16" height="16" border="0" style="CURSOR: hand">
 												</a>
 											</td>

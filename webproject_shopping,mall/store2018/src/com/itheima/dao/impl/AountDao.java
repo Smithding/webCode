@@ -59,12 +59,14 @@ public class AountDao implements InDao {
 	}
 	
 	/**
-	 * 最热商品sql查询
+	 * 全部商品sql查询
+	 * @throws SQLException 
 	 */
-	public List<Product> hotList() {
+	public List<Product> hotList() throws SQLException {
 		QueryRunner queryRunner = new QueryRunner(C3P0Utils.getDataSource());
-		String sql = "select * from ";
-		return null;
+		String sql = "select * from product ";
+		List<Product> query = queryRunner.query(sql, new BeanListHandler<>(Product.class));
+		return query;
 	}
 	
 	/**
@@ -87,6 +89,26 @@ public class AountDao implements InDao {
 		String sql = "select * from user where state = ? and uid = ?  ";
 		User user = queryRunner.query(sql, new BeanHandler<>(User.class),1,activateid);
 		return user;
+	}
+
+	/**
+	 * 添加分类
+	 */
+	@Override
+	public void dao_addUI(String cname, String id) throws SQLException {
+		QueryRunner queryRunner = new QueryRunner(C3P0Utils.getDataSource());
+		String sql = "insert into category values(?,?)  ";
+	    queryRunner.update(sql, cname,id);
+	}
+
+	/**
+	 * 根据id删除分类
+	 */
+	@Override
+	public void dao_deleteaddUI(String cid) throws SQLException {
+		QueryRunner queryRunner = new QueryRunner(C3P0Utils.getDataSource());
+		String sql = "delete from category where cid = ?";
+		queryRunner.update(sql,cid);
 	}
 
 	

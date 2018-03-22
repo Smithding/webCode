@@ -36,24 +36,22 @@ body {
   </table>
 </form>
 <script language="JavaScript">
-<!--
-  document.forms['theForm'].elements['username'].focus();
+
+ /*  document.forms['theForm'].elements['username'].focus();
   
-  /**
-   * 检查表单输入的内容
-   */
+ 
   function validate()
   {
     var validator = new Validator('theForm');
     validator.required('username', user_name_empty);
-    //validator.required('password', password_empty);
+    validator.required('password', password_empty);
     if (document.forms['theForm'].elements['captcha'])
     {
       validator.required('captcha', captcha_empty);
     }
     return validator.passed();
-  }
+  } */
   
-//-->
+
 </script>
 </body>

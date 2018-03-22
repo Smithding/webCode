@@ -28,8 +28,11 @@
 		d.add('010101','0101','用户管理','${pageContext.request.contextPath}/userAdmin_findAll.action?page=1','','mainFrame');
 		d.add('0102','01','分类管理','','','mainFrame');
 		d.add('010201','0102','分类管理','${pageContext.request.contextPath}/adminCategoryServlet?method=findAll','','mainFrame');
+		d.add('010202','0102','分类添加','${pageContext.request.contextPath}/admin/category/add.jsp','','mainFrame');
 		d.add('0104','01','商品管理');
-		d.add('010401','0104','商品管理','${pageContext.request.contextPath}/adminProduct_findAll.action?page=1','','mainFrame');
+		d.add('0104','01','商品管理');
+		d.add('010401','0104','已经上架的商品','${pageContext.request.contextPath}/adminCategoryServlet?method=findAll02','','mainFrame');
+		d.add('010402','0104','添加新商品','${pageContext.request.contextPath}/admin/product/add.jsp','','mainFrame');
 		d.add('0105','01','订单管理');
 		d.add('010501','0105','订单管理','${pageContext.request.contextPath}/adminOrder_findAll.action?page=1','','mainFrame');
 		document.write(d);
