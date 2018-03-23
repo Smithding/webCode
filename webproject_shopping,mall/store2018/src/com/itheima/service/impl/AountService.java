@@ -122,7 +122,8 @@ public class AountService implements InService {
 	}
 
 	public User setactivate(String activateid) throws Exception {
-		// TODO Auto-generated method stub
+		
+		
 		return null;
 	}
 

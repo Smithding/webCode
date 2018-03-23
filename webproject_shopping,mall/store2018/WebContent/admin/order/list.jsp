@@ -1,57 +1,12 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <HTML>
 	<HEAD>
 		<meta http-equiv="Content-Language" content="zh-cn">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link href="${pageContext.request.contextPath}/css/Style1.css" rel="stylesheet" type="text/css" />
-		<script language="javascript" src="${pageContext.request.contextPath}/js/public.js"></script>
-		<script type="text/javascript">
-			function showDetail(oid){
-				var but = document.getElementById("but"+oid);
-				var div1 = document.getElementById("div"+oid);
-				if(but.value == "订单详情"){
-					// 1.创建异步对象
-					var xhr = createXmlHttp();
-					// 2.设置监听
-					xhr.onreadystatechange = function(){
-						if(xhr.readyState == 4){
-							if(xhr.status == 200){
-								
-								div1.innerHTML = xhr.responseText;
-							}
-						}
-					}
-					// 3.打开连接
-					xhr.open("GET","${pageContext.request.contextPath}/adminOrder_findOrderItem.action?oid="+oid+"&time="+new Date().getTime(),true);
-					// 4.发送
-					xhr.send(null);
-					but.value = "关闭";
-				}else{
-					div1.innerHTML = "";
-					but.value="订单详情";
-				}
-				
-			}
-			function createXmlHttp(){
-				   var xmlHttp;
-				   try{ // Firefox, Opera 8.0+, Safari
-				        xmlHttp=new XMLHttpRequest();
-				    }
-				    catch (e){
-					   try{// Internet Explorer
-					         xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
-					      }
-					    catch (e){
-					      try{
-					         xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
-					      }
-					      catch (e){}
-					      }
-				    }
-
-					return xmlHttp;
-				 }
-		</script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/layer/layer.js"></script>
 	</HEAD>
 	<body>
 		<br>
@@ -91,69 +46,89 @@
 										订单详情
 									</td>
 								</tr>
-									<s:iterator var="o" value="pageBean.list" status="status">
-										<tr onmouseover="this.style.backgroundColor = 'white'"
-											onmouseout="this.style.backgroundColor = '#F5FAFE';">
+								<c:forEach items="${pageBean.list }" var="o" varStatus="vs">
+										<tr>
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="18%">
-												<s:property value="#status.count"/>
+												${vs.count }
 											</td>
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">
-												<s:property value="#o.oid"/>
+												${o.oid }
 											</td>
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">
-												<s:property value="#o.total"/>
+													${o.total }
 											</td>
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">
-												<s:property value="#o.name"/>
+												${o.name }
 											</td>
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">
-												<s:if test="#o.state==1">
+												<c:if test="${o.state == 0}">
 													未付款
-												</s:if>
-												<s:if test="#o.state==2">
-													<a href="${ pageContext.request.contextPath }/adminOrder_updateState.action?oid=<s:property value="#o.oid"/>"><font color="blue">发货</font></a>
-												</s:if>
-												<s:if test="#o.state==3">
-													等待确认收货
-												</s:if>
-												<s:if test="#o.state==4">
+												</c:if>
+												<c:if test="${o.state == 1 }">
+													<a href="${pageContext.request.contextPath}/adminCategoryServlet?method=updateState&oid=${o.oid}">去发货</a>
+												</c:if>
+												<c:if test="${o.state == 2 }">
+													已发货
+												</c:if>
+												<c:if test="${o.state== 3 }">
 													订单完成
-												</s:if>
+												</c:if>
 											
 											</td>
 											<td align="center" style="HEIGHT: 22px">
-												<input type="button" value="订单详情" id="but<s:property value="#o.oid"/>" onclick="showDetail(<s:property value="#o.oid"/>)"/>
-												<div id="div<s:property value="#o.oid"/>">
-													
-												</div>
+												<input type="button" value="订单详情"  onclick="fun('${o.oid}')"/>
+												
 											</td>
 							
 										</tr>
-									</s:iterator>	
+									</c:forEach>
 							</table>
 						</td>
 					</tr>
 					<tr align="center">
 						<td colspan="7">
-							第<s:property value="pageBean.page"/>/<s:property value="pageBean.totalPage"/>页 
-							<s:if test="pageBean.page != 1">
-								<a href="${ pageContext.request.contextPath }/adminOrder_findAll.action?page=1">首页</a>|
-								<a href="${ pageContext.request.contextPath }/adminOrder_findAll.action?page=<s:property value="pageBean.page-1"/>">上一页</a>|
-							</s:if>
-							<s:if test="pageBean.page != pageBean.totalPage">
-								<a href="${ pageContext.request.contextPath }/adminOrder_findAll.action?page=<s:property value="pageBean.page+1"/>">下一页</a>|
-								<a href="${ pageContext.request.contextPath }/adminOrder_findAll.action?page=<s:property value="pageBean.totalPage"/>">尾页</a>|
-							</s:if>
+							<c:if test="${ pageBean.curPage != 1 }">
+								<a href="${ pageContext.request.contextPath }/adminCategoryServlet?method=findByState&curPage=1&state=0">首页</a>|
+								<a href="${ pageContext.request.contextPath }/adminCategoryServlet?method=findByState&curPage=${pageBean.curPage-1}&state=0">上一页</a>|
+							</c:if>
+							<c:if test="${pageBean.curPage != pageBean.sumPage}">
+								<a href="${ pageContext.request.contextPath }/adminCategoryServlet?method=findByState&curPage=${pageBean.curPage+1}&state=0">下一页</a>|
+								<a href="${ pageContext.request.contextPath }/adminCategoryServlet?method=findByState&curPage=${pageBean.sumPage}&state=0">尾页</a>|
+							</c:if>
 						</td>
 					</tr>
 				</TBODY>
 			</table>
 		</form>
-	</body>
+	<script type="text/javascript">
+		function fun(oid) {
+			//alert("result=");
+		    $.getJSON("${pageContext.request.contextPath}/adminCategoryServlet", { "method": "findByOid", "oid": oid }, function(json){
+			          //alert("JSON Data: " + json);
+			        var s = "<table border='1px' width='100%' height='100%'><tr><td>商品名称</td><td>商品价格</td><td>购买数量</td></tr>";
+			    $(json).each(function(i,obj){
+			    	s+="<tr><td><img width='100px' height='90px' src='${pageContext.request.contextPath }/"+obj.product.pimage+"'</td><td>"+obj.product.pname+"</td><td>"+obj.count+"</td></tr>";
+	  
+			    });
+			    s+="</table>";
+		    	layer.open({
+					type : 1,//0:信息框; 1:页面; 2:iframe层;	3:加载层;	4:tip层
+					title : "商品详情!",//标题
+					area : [ '600px', '400px' ],//大小
+					shadeClose : true, //点击弹层外区域 遮罩关闭
+					content : s//内容
+				});	  
+			          
+			}); 
+		}
+	</script>
+
+
+</body>
 </HTML>
 

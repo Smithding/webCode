@@ -50,7 +50,7 @@ public class AountDao02 implements InDao02 {
 	}
 
 	/**
-	 * 统计当前类别下的商品数量
+	 * 统计当前类别下订单数量
 	 * @throws SQLException 
 	 */
 	public int selectCount(String cid) throws SQLException {
@@ -61,7 +61,7 @@ public class AountDao02 implements InDao02 {
 	}
 
 	/**
-	 * 分类查询当前列标下的商品
+	 * 分类查询当前列标下的全部订单
 	 * @throws SQLException 
 	 */
 	public List<Product> selectLimit(int a, int b, String cid) throws SQLException {

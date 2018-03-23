@@ -70,7 +70,7 @@ public  class DaoOrderServletImpl implements InDaoOrderServletImpl {
 	}
 
 	/**
-	 * 查询所有商品订单
+	 * 分页查询所有订单
 	 * @throws SQLException 
 	 * @throws Exception 
 	 * @throws IllegalAccessException 

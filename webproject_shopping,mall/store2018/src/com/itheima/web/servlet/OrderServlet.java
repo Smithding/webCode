@@ -86,7 +86,7 @@ public class OrderServlet extends BaseServlet {
 	}
 
 	/**
-	 * 创建我的订单实体功能
+	 * 创建我的全部订单实体功能
 	 * @param request
 	 * @param response
 	 * @return

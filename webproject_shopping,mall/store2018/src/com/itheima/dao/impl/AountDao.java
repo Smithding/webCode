@@ -4,10 +4,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.itheima.bean.Category;
+import com.itheima.bean.Order;
 import com.itheima.bean.Product;
 import com.itheima.bean.User;
 import com.itheima.dao.InDao;
@@ -109,6 +112,67 @@ public class AountDao implements InDao {
 		QueryRunner queryRunner = new QueryRunner(C3P0Utils.getDataSource());
 		String sql = "delete from category where cid = ?";
 		queryRunner.update(sql,cid);
+	}
+
+	/**
+	 * `pid` varchar(32) NOT NULL,
+		  `pname` varchar(50) DEFAULT NULL,
+		  `market_price` double DEFAULT NULL,
+		  `shop_price` double DEFAULT NULL,
+		  `pimage` varchar(200) DEFAULT NULL,
+		  
+		  `pdate` date DEFAULT NULL,
+		  `is_hot` int(11) DEFAULT NULL,
+		  `pdesc` varchar(255) DEFAULT NULL,
+		  `pflag` int(11) DEFAULT NULL,
+		  `cid` varchar(32) DEFAULT NULL,
+	 * @throws SQLException 
+	 */
+	@Override
+	public void dao_addProductServlet(Product product) throws SQLException {
+		// TODO Auto-generated method stub
+		QueryRunner queryRunner = new QueryRunner(C3P0Utils.getDataSource());
+		String sql = "insert into product values(?,?,?,?,? ,?,?,?,?,?)";
+		Object[] pame = {product.getPid(),product.getPname(),product.getMarket_price(),product.getShop_price(),
+				product.getPimage(),product.getPdate(),product.getIs_hot(),product.getPdesc(),
+				product.getPflag(),product.getCid()};
+		queryRunner.update(sql, pame );
+	}
+
+	/**
+	 * 全部商品的总数量
+	 */
+	@Override
+	public int State_sumPage(int state) throws SQLException {
+		QueryRunner queryRunner = new QueryRunner(C3P0Utils.getDataSource());
+		String sql = "select count(*) from orders where state = ?";
+		Long query =  (Long) queryRunner.query(sql, new ScalarHandler(),state);
+		return query.intValue();
+	}
+
+	/**
+	 * 后台-查询每页显示指定订单
+	 * @throws SQLException 
+	 */
+	@Override
+	public List<Order> State_sum02(int state,int a, int b) throws SQLException {
+		QueryRunner queryRunner = new QueryRunner(C3P0Utils.getDataSource());
+		String sql ="select * from orders where state = ? limit ? ,?";
+		List<Order> query = queryRunner.query(sql, new BeanListHandler<>(Order.class),state,a,b);
+		return query;
+		
+	}
+
+	/**
+	 *后台-查询所有订单
+	 * @throws SQLException 
+	 */
+	@Override
+	public List<Order> State_sum01(int a, int b) throws SQLException {
+		QueryRunner queryRunner = new QueryRunner(C3P0Utils.getDataSource());
+		String sql ="select * from orders limit ? ,?";
+		List<Order> query = queryRunner.query(sql, new BeanListHandler<>(Order.class),a,b);
+		return query;
 	}
 
 	

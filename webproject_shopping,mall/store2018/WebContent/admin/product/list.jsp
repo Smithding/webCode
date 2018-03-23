@@ -60,7 +60,7 @@
 										删除
 									</td>
 								</tr>
-								<c:forEach items="${list }" var="p" varStatus="vs">
+								<c:forEach items="${listAll }" var="p" varStatus="vs">
 										<tr onmouseover="this.style.backgroundColor = 'white'"
 											onmouseout="this.style.backgroundColor = '#F5FAFE';">
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
@@ -73,7 +73,7 @@
 											</td>
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">
-												${p.market_price }
+												${p.pname }
 											</td>
 											<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 												width="17%">

@@ -45,7 +45,7 @@ public class IndexServletImpl implements InIndexServlet {
 	}
 
 	/**
-	 * 分类商品的分页展示
+	 * 全部订单的分页展示
 	 * @throws SQLException 
 	 */
 	public PageBean<Product> findByPage(int curPage, String cid) throws SQLException {

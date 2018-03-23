@@ -34,5 +34,9 @@ public class Constant {
 	 * 订单分页，一页显示的数量
 	 */
 	public static final int ORDER_PAGE_SIZE = 2;
+	/**
+	 * 后台订单一页的数量
+	 */
+	public static final int HOUTAI_PAGE_SIZE = 5;
 	
 }
