@@ -69,6 +69,7 @@ public class AddProductServlet extends HttpServlet {
 					//a.获得文件内容(流)
 					InputStream is = fileItem.getInputStream();
 					//b. 动态获得\products的绝对路径(tomcat里面的)  E:\worksoft\tomcat\apache-tomcat-7.0.52_31\webapps\store31\products
+					/*String realPath = "f:/redes";*/
 					String realPath = getServletContext().getRealPath("/products");
 					//c.创建两层文件夹
 					File dirPath = new File(realPath, dir);

@@ -56,7 +56,7 @@
 						商品图片：
 					</td>
 					<td class="ta_01" bgColor="#ffffff" colspan="3">
-						<input type="file" name="upload" />
+						<input type="file" name="pimage" />
 					</td>
 				</tr>
 				<tr>
