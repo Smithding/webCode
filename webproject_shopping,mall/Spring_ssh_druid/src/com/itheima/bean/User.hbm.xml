@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-4-12 13:15:13 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.itheima.bean.User" table="user">
+    
+        <id name="uid" type="java.lang.Integer">
+            <column name="uid" />
+            <generator class="native" />
+        </id>
+        
+        <property name="uname" type="java.lang.String">
+            <column name="uname" />
+        </property>
+        <property name="uage" type="int">
+            <column name="uage" />
+        </property>
+    </class>
+</hibernate-mapping>

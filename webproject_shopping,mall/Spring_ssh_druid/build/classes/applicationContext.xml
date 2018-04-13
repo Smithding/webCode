@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+
+    <!--引入 jdbc.properties -->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	
+	<!--注册 dataSource -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="url" value="${jdbc.url}"/>
+		<property name="driverClassName" value="${jdbc.driver}"/>
+		<property name="username" value="${jdbc.user}"/>
+		<property name="password" value="${jdbc.password}"/>
+	</bean>
+
+	<!-- 注册 sessionFactory-->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<!--一,数据源代替, 必配  -->
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 二,hibernateProperties代替, 选配  -->
+		<property name="hibernateProperties">
+			<map>
+				<entry key="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"></entry>
+				<entry key="hibernate.show_sql" value="true"></entry>
+				<entry key="hibernate.format_sql" value="true"></entry>
+				<entry key="hibernate.hbm2ddl.auto" value="update"></entry>
+			</map>
+		</property>
+		
+		<!--三, 映射文件  -->
+		<property name="mappingDirectoryLocations" value="classpath:com/itheima/bean"></property>
+	</bean>
+	
+	<!--*****配置事务******  -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 开启事务注解 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!--*****配置事务结束******  -->
+	
+
+	<!--注册userDao  -->
+	<bean id="userDao" class="com.itheima.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<!-- 注册Service -->
+	<bean id="userService" class="com.itheima.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	
+	<!-- 注册Action -->
+	<bean id="userAction" class="com.itheima.web.UserAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+	</bean>
+</beans>
+
