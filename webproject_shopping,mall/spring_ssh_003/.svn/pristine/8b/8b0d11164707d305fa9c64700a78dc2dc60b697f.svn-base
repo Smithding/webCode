@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+	<!-- 设置文件上传大小的限制 (不超过5M) -->
+	<constant name="struts.multipart.maxSize" value="5242880"></constant>
+
+
+    <package name="base" extends="struts-default" namespace="/">
+		<interceptors>
+			<!--定义拦截器  -->
+			<interceptor name="privilegeInterceptor" class="com.itheima.web.filter.PrivilegeInterceptor">
+				<param name="excludeMethods">regist,login</param>
+			</interceptor>
+			
+			<interceptor-stack name="baseStack">
+				<interceptor-ref name="privilegeInterceptor"/>
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+			
+		</interceptors>
+		
+		<!--使用默认的拦截器  -->
+		<default-interceptor-ref name="baseStack"/>
+		<global-results>
+			<result name="toLoginPage">/login.jsp</result>
+		</global-results>
+		
+	</package>
+
+
+	<!-- 把Action创建交给Spring -->
+	<constant name="struts.objectFactory" value="spring"></constant>
+	<!-- 配置用户模块(内部员工) -->
+	<package name="user" extends="base" namespace="/">
+		<action name="user_*" class="userAction" method="{1}">
+			<!--配置注册成功 -->
+			<result name="registSuccess" type="redirect">
+				/login.jsp
+			</result>
+
+			<!-- 登录成功 -->
+			<result name="loginSuccess" type="redirect">
+				/index.jsp
+			</result>
+			<!-- 登录失败 -->
+			<result name="loginError">
+				/login.jsp
+			</result>
+		</action>
+	</package>
+	<!-- 配置数据字典模块 -->
+	<package name="baseDict" extends="base" namespace="/">
+		<action name="baseDict_*" class="baseDictAction" method="{1}">
+		</action>
+
+	</package>
+
+
+
+
+
+	<!-- 配置客户模块 -->
+	<package name="customer" extends="base" namespace="/">
+		<action name="customer_*" class="customerAction" method="{1}">
+			<!-- 转发到添加客户的页面 -->
+			<result name="saveUISuccess">
+				/jsp/customer/add.jsp
+			</result>
+			<!-- 分页查询功能转发 -->
+			<result name="findByPageSuccess">
+				/jsp/customer/list.jsp
+			</result>
+			<!-- 保存客户及图片重定向 -->
+			<result name="saveSuccess" type="redirect">
+				customer_findByPage.action
+			</result>
+			<!-- 列表删除功能重定向 -->
+			<result name="deleteSuccess" type="redirect">
+				customer_findByPage.action
+			</result>
+			<!-- 列表修改功能 转发 -->
+			<result name="editSuccess">
+				/jsp/customer/edit.jsp
+			</result>
+			<!-- 修改成功重定向list -->
+			<result name="updateSuccess" type="redirect">
+				customer_findByPage.action
+			</result>
+		</action>
+	</package>
+
+	<!-- 配置联系人模块 -->
+	<package name="linkMan" extends="base" namespace="/">
+		<action name="linkMan_*" class="linkManAction" method="{1}">
+			<!-- 客户列表显示 -->
+			<result name="saveUISuccess">
+				/jsp/linkman/add.jsp
+			</result>
+			<!-- 联系人列表显示 -->
+			<result name="findByPageSuccess">
+				/jsp/linkman/list.jsp
+			</result>
+			<!-- 跳转到联系人列表 -->
+			<result name="saveSuccess" type="redirectAction">
+				linkMan_findByPage.action
+			</result>
+			<!-- 跳转到更新联系人页面 -->
+			<result name="editSuccess">
+				/jsp/linkman/edit.jsp
+			</result>
+			<!-- 根据id修改联系人 -->
+			<result name="updateSuccess" type="redirectAction">
+				linkMan_findByPage.action
+			</result>
+			<!-- 根据id删除联系人 -->
+			<result name="deleteSuccess" type="redirectAction">
+				linkMan_findByPage.action
+			</result>
+		</action>
+	</package>
+
+	<!-- 客户拜访 -->
+	<package name="saleVisit" extends="base" namespace="/">
+		<action name="saleVisit_*" class="saleVisitAction" method="{1}">
+			<result name="saveUISuccess">
+				/jsp/salevisit/add.jsp
+			</result>
+			
+			<result name="findByPageSuccess">
+				/jsp/salevisit/list.jsp
+			</result>
+			
+			<result name="saveSuccess" type="redirectAction">
+				/jsp/salevisit/list.jsp
+			</result>
+		</action>
+	</package>
+
+
+</struts>

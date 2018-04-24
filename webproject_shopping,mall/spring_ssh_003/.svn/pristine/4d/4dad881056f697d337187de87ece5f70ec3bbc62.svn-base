@@ -1,0 +1,36 @@
+package com.itheima.dao.impl;
+
+import java.util.List;
+
+import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+
+import com.itheima.bean.User;
+import com.itheima.constant.Constants;
+import com.itheima.dao.UserDao;
+
+public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
+
+	@Override
+	public void save(User user) {
+		getHibernateTemplate().save(user);
+	}
+
+	@Override
+	public User login(User user) {
+		//根据登录名, 登录密码 用户状态查询用户
+		String hql = "from User where user_code = ? and user_password = ? and user_state = ?";
+		List<User> list = (List<User>) getHibernateTemplate().find(hql, user.getUser_code(),user.getUser_password(), Constants.USER_IN_JOB);
+		if(list != null && list.size() > 0){
+			return list.get(0);
+		}
+		
+		return null;
+	}
+
+	@Override
+	public List<User> findAll() {
+		
+		return (List<User>) getHibernateTemplate().find("from User");
+	}
+
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- 建立类与表映射 -->
+	<class name="com.itheima.bean.LinkMan" table="cst_linkman">
+		<!-- 建立oid与表的主键映射 -->
+		<id name="lkm_id" column="lkm_id">
+			<generator class="native"/>
+		</id>
+		<!-- 建立属性与表字段映射 -->
+		<property name="lkm_name"/>
+		<property name="lkm_gender"/>
+		<property name="lkm_phone"/>
+		<property name="lkm_mobile"/>
+		<property name="lkm_email"/>
+		<property name="lkm_qq"/>
+		<property name="lkm_position"/>
+		<property name="lkm_memo"/>
+		<!-- 多的一方 -->
+		<many-to-one name="customer" class="com.itheima.bean.Customer" column="lkm_cust_id"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- 建立类与表映射 -->
+	<class name="com.itheima.bean.User" table="user">
+		<!-- 建立oid与表的主键映射 -->
+		<id name="user_id" column="user_id">
+			<generator class="native"/>
+		</id>
+		<!-- 建立属性与表字段映射 -->
+		<property name="user_code"/>
+		<property name="user_name"/>
+		<property name="user_password"/>
+		<property name="user_state"/>
+	</class>
+</hibernate-mapping>
