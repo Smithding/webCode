@@ -15,3 +15,13 @@
 *.PDF	 diff=astextplain
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
+*.class diff=astextplain
+*.classpath
+*.project
+*.settings
+*/.git/*
+.deployables
+.git
+.svn
+_svn
+target
